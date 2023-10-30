@@ -1,8 +1,0 @@
-streamlit
-plotly
-pandas
-os 
-warnings
-datetime
-sqlite3
-numpy
