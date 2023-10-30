@@ -158,6 +158,57 @@ piechartdf = piechartdf.rename(columns={'num_cmds': 'total_num_cmds'})
 fresh_df = filtered_df.sort_values(by='start', ascending=False)
 fresh_df = filtered_df.head(20).copy()
 
+#Create variables for overview
+startDate = str(agg_df['session_start'].min())[:10]
+endDate = str(agg_df['session_end'].min())[:10]
+uniqueSessions = str(agg_df['line_count'].count())
+commandNumber = int(agg_df['total_num_cmds'].sum())
+lineCount = agg_df['line_count'].sum()
+charSum = agg_df['total_source_length'].sum()
+
+# Overview on top of the page
+st.markdown('### Overview')
+col1, col2,col3, col4, col5, col6 = st.columns(6)
+# Define inline styles for metrics
+metric_style = f"""
+    background-color: rgb(239, 138, 96);
+    border-radius: 10px; /* Adds rounded corners */
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    padding: 10px;
+"""
+
+# Create each metric element with the specified inline styles
+import streamlit as st
+
+# Create variables for overview
+startDate = str(agg_df['session_start'].min())[:10]
+endDate = str(agg_df['session_end'].min())[:10]
+uniqueSessions = str(agg_df['line_count'].count())
+commandNumber = int(agg_df['total_num_cmds'].sum())
+lineCount = agg_df['line_count'].sum()
+charSum = agg_df['total_source_length'].sum()
+
+# Create each metric element with styles
+with col1:
+    st.markdown(f'<div style="{metric_style}"><span style="font-weight: bold; ">Session Start (min)</span><br>{startDate}</div>', unsafe_allow_html=True)
+
+with col2:
+    st.markdown(f'<div style="{metric_style}"><span style="font-weight: bold;">Session End (max)</span><br>{endDate}</div>', unsafe_allow_html=True)
+
+with col3:
+    st.markdown(f'<div style="{metric_style}"><span style="font-weight: bold;">Number of Sessions</span><br>{uniqueSessions}</div>', unsafe_allow_html=True)
+
+with col4:
+    st.markdown(f'<div style="{metric_style}"><span style="font-weight: bold;">Number of Commands</span><br>{commandNumber}</div>', unsafe_allow_html=True)
+
+with col5:
+    st.markdown(f'<div style="{metric_style}"><span style="font-weight: bold;">Count of Lines</span><br>{lineCount}</div>', unsafe_allow_html=True)
+
+with col6:
+    st.markdown(f'<div style="{metric_style}"><span style="font-weight: bold;">Number of characters</span><br>{charSum}</div>', unsafe_allow_html=True)
+
 
 #Show data based on filters 
 st.subheader("View logs based on currently applied filters:")
