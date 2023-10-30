@@ -13,7 +13,8 @@ st.set_page_config(page_title = "Jupyter Log Analysis", page_icon = ":bar_chart:
 st.title(" :bar_chart: Önlab 1: Monitoring Jupyter Logs")
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html = True)
 
-location_of_local_db = r'C:\Users\Administrator\.ipython\profile_default\history.sqlite'
+#C:\Users\Administrator\.ipython\profile_default\history.sqlite'
+location_of_local_db = r'history.sqlite'
 
 #get the different sessions
 sessions_conn = sqlite3.connect(location_of_local_db)
